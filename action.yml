@@ -30,7 +30,9 @@ runs:
         wget -q -O - "$url" | tar xz --directory=/usr/local/bin website-stalker
     - id: version
       shell: bash
-      run: echo "version=$(website-stalker --version)" >> $GITHUB_OUTPUT
+      run: |
+        website-stalker --version
+        echo "version=$(website-stalker --version)" >> $GITHUB_OUTPUT
     - name: Show --help
       shell: bash
       run: website-stalker --help
