@@ -1,5 +1,8 @@
 name: Install website-stalker
 description: Installation of the website-stalker on a Linux host
+branding:
+  color: purple
+  icon: box
 inputs:
   version:
     description: The version of website-stalker to install
