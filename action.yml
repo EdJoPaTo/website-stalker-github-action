@@ -12,30 +12,6 @@ inputs:
     description: The host architecture on which the executable should be running. This is the rust triple.
     required: true
     default: x86_64-unknown-linux-gnu
-outputs:
-  version:
-    description: The version of website-stalker that was installed
-    value: ${{ steps.version.outputs.version }}
 runs:
-  using: "composite"
-  steps:
-    - name: Install
-      shell: bash -eux {0}
-      run: |
-        base=https://api.github.com/repos/EdJoPaTo/website-stalker/releases/
-        if [ "${{ inputs.version }}" == "latest" ]; then
-          base+="latest"
-        else
-          base+="tags/${{ inputs.version }}"
-        fi
-
-        url=$(curl --silent --max-time 2 --retry 3 "$base" | jq --raw-output '.assets[] | select(.name | test("${{ inputs.triple }}.tar.gz")) | .browser_download_url')
-        wget -q -O - "$url" | tar xz --directory=/usr/local/bin website-stalker
-    - id: version
-      shell: bash
-      run: |
-        website-stalker --version
-        echo "version=$(website-stalker --version)" >> $GITHUB_OUTPUT
-    - name: Show --help
-      shell: bash
-      run: website-stalker --help
+  using: "node16"
+  main: dist/index.js

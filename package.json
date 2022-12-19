@@ -1,0 +1,35 @@
+{
+	"private": true,
+	"license": "MIT",
+	"scripts": {
+		"start": "tsc --sourceMap && node --enable-source-maps dist/index.js",
+		"test": "tsc --sourceMap && xo"
+	},
+	"type": "module",
+	"engines": {
+		"node": ">=16"
+	},
+	"dependencies": {
+		"@actions/core": "^1.10.0",
+		"@actions/tool-cache": "^2.0.1",
+		"node-fetch": "^3.3.0"
+	},
+	"devDependencies": {
+		"@sindresorhus/tsconfig": "^3.0.1",
+		"@types/node": "^16.18.10",
+		"@vercel/ncc": "^0.36.0",
+		"typescript": "^4.7.4",
+		"xo": "^0.53.0"
+	},
+	"xo": {
+		"rules": {
+			"@typescript-eslint/naming-convention": "off",
+			"@typescript-eslint/no-unsafe-assignment": "off",
+			"@typescript-eslint/no-unsafe-call": "off",
+			"@typescript-eslint/no-unsafe-return": "off",
+			"@typescript-eslint/restrict-plus-operands": "off",
+			"ava/no-ignored-test-files": "off",
+			"unicorn/prefer-top-level-await": "off"
+		}
+	}
+}
