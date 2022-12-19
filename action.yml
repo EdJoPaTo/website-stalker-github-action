@@ -29,7 +29,7 @@ runs:
           base+="tags/${{ inputs.version }}"
         fi
 
-        url=$(curl --silent --max-time 2 --retry 3 "$base" | jq --raw-output '.assets[] | select(.name | test("${{ inputs.triple }}.tar.gz")) | .browser_download_url')
+        url=$(curl --max-time 2 --retry 3 "$base" | jq --raw-output '.assets[] | select(.name | test("${{ inputs.triple }}.tar.gz")) | .browser_download_url')
         wget -q -O - "$url" | tar xz --directory=/usr/local/bin website-stalker
     - id: version
       shell: bash
