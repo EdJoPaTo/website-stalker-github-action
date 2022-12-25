@@ -31,7 +31,7 @@ runs:
 
         releases=/tmp/website-stalker-releases.json
 
-        curl --output "$releases" "$base"
+        curl --header 'authorization: Bearer ${{ github.token }}' --output "$releases" "$base"
         jq '.' "$releases"
 
         url=$(jq --raw-output '.assets[] | select(.name | test("${{ inputs.triple }}.tar.gz")) | .browser_download_url' "$releases")
