@@ -43,6 +43,11 @@ runs:
       run: |
         website-stalker --version
         echo "version=$(website-stalker --version)" >> $GITHUB_OUTPUT
+    - name: set git config
+      shell: bash
+      run: |
+        git config --global user.email "website-stalker-github-action@edjopato.de"
+        git config --global user.name "Website Stalker Github Action"
     - name: Show --help
       shell: bash
       run: website-stalker --help
